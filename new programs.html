@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs & Initiatives | NEDC</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+      /* Navbar */
+    .navbar {
+      transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+      background: transparent !important;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+   margin-top: 0.8px;
+
+    }
+    .navbar-brand {
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+ padding-top: 10px;
+}
+
+.logo-top {
+  opacity: 1;
+}
+
+.logo-scroll {
+  opacity: 0;
+}
+
+.navbar.scrolled .logo-top {
+  opacity: 0;
+}
+
+.navbar.scrolled .logo-scroll {
+  opacity: 1;
+}
+/* Navbar */
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* High z-index so toggler is clickable */
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  background: transparent;
+   
+}
+
+/* Logo container */
+.navbar-brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Make sure logos are above navbar background but below toggler */
+}
+
+/* Logos stacked */
+.logo {
+  max-height: 80px;
+  width: auto;
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* Allow clicks to pass through */
+ 
+}
+
+/* Opacity swap on scroll */
+.logo-top { opacity: 1; }
+.logo-scroll { opacity: 0; }
+
+.navbar.scrolled .logo-top { opacity: 0; }
+.navbar.scrolled .logo-scroll { opacity: 1; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo { max-height: 50px; }
+}
+
+    .navbar.scrolled {
+      position: fixed;
+      background: #fff !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .navbar .nav-link { color: white; transition: color 0.3s; }
+    .navbar.scrolled .nav-link { color: black !important; }
+    .navbar-brand img { height: 80px; }
+    .navbar-toggler-icon { filter: invert(1); }
+    .navbar.scrolled .navbar-toggler-icon { filter: invert(0); }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 60vh;
+      background: url(Frame\ 9.png) center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    /* Program Cards */
+    .program-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .program-card img {
+      border-radius: 10px;
+      margin-bottom: 15px;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .program-card h5 {
+      font-weight: 700;
+      color: #002147;
+    }
+    .program-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .btn-learn {
+      background-color: #FFD700;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      color: #000;
+      transition: 0.3s;
+    }
+    .btn-learn:hover {
+      background-color: #e6c200;
+    }
+
+    footer {
+      background: #002147;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-dark fixed-top" href="#">
+      <img src="nedc2-removebg-preview.png" alt="Logo Top" class="logo logo-top">
+      <img src="nedc_lg-removebg-preview.png" alt="Logo Scroll" class="logo logo-scroll d-none">
+    </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  About Us</a>
+            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li><a class="dropdown-item" href="new about.html">Who We Are</a></li>
+              <li><a class="dropdown-item" href="new board.html">Our Leadership</a></li>
+              <li><a class="dropdown-item" href="Message.html">From Our Leaders</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Board Members</a></li>
+              <li><a class="dropdown-item" href="#">Our Partners</a></li> -->
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Business Hub</a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+            <li><a class="dropdown-item" href="membership.html">Become A Member</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Membership Categories and Chairman</a></li>
+            <li><a class="dropdown-item" href="new programs.html">Programs and Initiatives</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Innovation Labs</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Capacity Building</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="membershipDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Services</a>
+            <ul class="dropdown-menu" aria-labelledby="membershipDropdown">
+              <li><a class="dropdown-item" href="COMING SOON.html">Services and Training</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Benefits</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Directory</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html"></a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">FAQs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="documentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documents</a>
+            <ul class="dropdown-menu" aria-labelledby="documentsDropdown">
+              <li><a class="dropdown-item" href="documents.html">Reports</a></li>
+              <li><a class="dropdown-item" href="documents.html">Policies</a></li>
+              <li><a class="dropdown-item" href="documents.html">Guidelines</a></li>
+              <li><a class="dropdown-item" href="documents.html">Templates</a></li>
+              <li><a class="dropdown-item" href="documents.html">Forms</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Programs & Initiatives</h1>
+      <p>Empowering enterprises, fostering innovation, and building inclusive prosperity, </p>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="Innovation.jpg" alt="Innovation Lab">
+          <h5> NEDC Innovation Lab</h5>
+          <p>A hub for tech-driven ideas where startups access mentorship, tools, and seed funding.Serves as a physical and virtual space for startups to scale their ideas.</p>
+          <a href="#" class="btn btn-learn mt-2">Coming Soon</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="slide 3.jpg" alt="Capacity Building">
+          <h5>BongoFursa Televised Business Pitch Show</h5>
+          <p> Becomes a national platform where innovators pitch to investors, corporates, and government</p>
+          <a href="#" class="btn btn-learn mt-2">Coming Soon</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="youth insurance.jpg" alt="Youth Enterprise">
+          <h5>NEDC Youth Insurance</h5>
+          <p> Introduces an innovative safety net for young entrepreneurs, protecting them from sudden 
+shocks such as illness, accidents, or unexpected business disruptions.</p>
+          <a href="#" class="btn btn-learn mt-2">Coming Soon</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="Awards.jpg" alt="Women Empowerment">
+          <h5>National Innovation Awards</h5>
+          <p>Celebrates Tanzania’s top entrepreneurs and innovators annually, providing recognition and 
+visibility.</p>
+          <a href="#" class="btn btn-learn mt-2">Coming Soon</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="Bongo App.jpg" alt="Finance Access">
+          <h5>BongoFursa Application Digital Platform</h5>
+          <p> 1Provides a 24/7 online ecosystem where entrepreneurs connect with investors, mentors, and 
+service providers.</p>
+          <a href="#" class="btn btn-learn mt-2">Coming soon </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="program-card">
+          <img src="aaa.jpg" alt="Green Growth">
+          <h5>Business Literacy for Youth (BLY) Syllabus</h5>
+          <p> Introduces entrepreneurship education into local colleges and vocational training centers.</p>
+          <a href="#" class="btn btn-learn mt-2">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 NEDC - All Rights Reserved</p>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Navbar color change on scroll
+  window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+document.querySelectorAll('.color-hover').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    let rect = el.getBoundingClientRect();
+    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  });
+});
+
+    // Navbar scroll effect
+   /* window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });*/
+
+document.addEventListener("scroll", function () {
+  const scrollPos = window.scrollY;
+  const logoTop = document.querySelector(".logo-top");
+  const logoScroll = document.querySelector(".logo-scroll");
+
+  if (scrollPos > 50) { // after scrolling
+    logoTop.classList.add("d-none");
+    logoScroll.classList.remove("d-none");
+  } else { // at top
+    logoTop.classList.remove("d-none");
+    logoScroll.classList.add("d-none");
+  }
+});
+
+
+document.querySelectorAll('.color-hover').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    let rect = el.getBoundingClientRect();
+    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  });
+});
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-section, .stat-card').forEach(el => observer.observe(el));
+
+    // Animated counters
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // smaller = faster
+
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const updateCount = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = Math.ceil(target / speed);
+
+            if(count < target){
+              counter.innerText = count + increment;
+              setTimeout(() => updateCount(counter), 20);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          };
+          updateCount(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach(c => counterObserver.observe(c));
+
+  </script>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarCollapse = document.getElementById("navmenu");
+  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+
+  // Close menu on nav-link click
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    link.addEventListener("click", () => {
+      if (navbarCollapse.classList.contains("show")) {
+        bsCollapse.hide();
+      }
+    });
+  });
+
+  // Close menu on scroll
+  window.addEventListener("scroll", () => {
+    if (navbarCollapse.classList.contains("show")) {
+      bsCollapse.hide();
+    }
+  });
+});
+</script>
+
+
+  <script>
+    window.addEventListener("scroll", function() {
+      let nav = document.querySelector(".navbar");
+      if (window.scrollY > 50) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEDC - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+ 
+  <style>
+    /* Navbar */
+    .navbar {
+      transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+      background: transparent !important;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+   margin-top: 0.8px;
+
+    }
+    .navbar-brand {
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+ padding-top: 10px;
+}
+
+.logo-top {
+  opacity: 1;
+}
+
+.logo-scroll {
+  opacity: 0;
+}
+
+.navbar.scrolled .logo-top {
+  opacity: 0;
+}
+
+.navbar.scrolled .logo-scroll {
+  opacity: 1;
+}
+/* Navbar */
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* High z-index so toggler is clickable */
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  background: transparent;
+   
+}
+
+/* Logo container */
+.navbar-brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Make sure logos are above navbar background but below toggler */
+}
+
+/* Logos stacked */
+.logo {
+  max-height: 80px;
+  width: auto;
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* Allow clicks to pass through */
+ 
+}
+
+/* Opacity swap on scroll */
+.logo-top { opacity: 1; }
+.logo-scroll { opacity: 0; }
+
+.navbar.scrolled .logo-top { opacity: 0; }
+.navbar.scrolled .logo-scroll { opacity: 1; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo { max-height: 50px; }
+}
+
+    .navbar.scrolled {
+      position: fixed;
+      background: #fff !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .navbar .nav-link { color: white; transition: color 0.3s; }
+    .navbar.scrolled .nav-link { color: black !important; }
+    .navbar-brand img { height: 80px; }
+    .navbar-toggler-icon { filter: invert(1); }
+    .navbar.scrolled .navbar-toggler-icon { filter: invert(0); }
+
+  /* Hero Section */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: url(Background2.jpg) center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin-left: 10%;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin: 20px 0;
+    }
+    .btn-hero {
+      background: #FFD700;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 30px;
+      color: #000;
+      transition: 0.3s;
+    }
+    .btn-hero:hover {
+      background: #e6c200;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .highlight {
+      color: #FFD700;
+    }
+
+    /* Vision, Mission, Values */
+    .icon-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .icon-card:hover {
+      transform: translateY(-8px);
+    }
+    .icon-card i {
+      font-size: 2rem;
+      color: #FFD700;
+      margin-bottom: 15px;
+    }
+
+    /* Strategic Pillars */
+    .pillar-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .pillar-card:hover {
+      background: #FFD700;
+      color: #000;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: #002147;
+      color: white;
+      padding: 60px 0;
+    }
+    .stats h3 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    /* Leadership */
+    .leader-card {
+      background: #fff;
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .leader-card img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .leader-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* CTA */
+    .cta {
+      background: #FFD700;
+      color: #000;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .cta h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .cta .btn-dark {
+      border-radius: 30px;
+      padding: 12px 30px;
+      margin: 10px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-dark fixed-top" href="#">
+      <img src="nedc2-removebg-preview.png" alt="Logo Top" class="logo logo-top">
+      <img src="nedc_lg-removebg-preview.png" alt="Logo Scroll" class="logo logo-scroll d-none">
+    </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+     
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  About Us</a>
+            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li><a class="dropdown-item" href="new about.html">Who We Are</a></li>
+              <li><a class="dropdown-item" href="new board.html">Our Leadership</a></li>
+              <li><a class="dropdown-item" href="Message.html">From Our Leaders</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Board Members</a></li>
+              <li><a class="dropdown-item" href="#">Our Partners</a></li> -->
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Business Hub</a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+            <li><a class="dropdown-item" href="membership.html">Become A Member</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Membership Categories and Chairman</a></li>
+            <li><a class="dropdown-item" href="new programs.html">Programs and Initiatives</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Innovation Labs</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Capacity Building</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="membershipDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Services</a>
+            <ul class="dropdown-menu" aria-labelledby="membershipDropdown">
+              <li><a class="dropdown-item" href="COMING SOON.html">Services and Training</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Benefits</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Directory</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html"></a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">FAQs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="documentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documents</a>
+            <ul class="dropdown-menu" aria-labelledby="documentsDropdown">
+              <li><a class="dropdown-item" href="documents.html">Reports</a></li>
+              <li><a class="dropdown-item" href="documents.html">Policies</a></li>
+              <li><a class="dropdown-item" href="documents.html">Guidelines</a></li>
+              <li><a class="dropdown-item" href="documents.html">Templates</a></li>
+              <li><a class="dropdown-item" href="documents.html">Forms</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+   <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>We Are <span class="highlight">More Than a Chamber</span></h1>
+      <p>NEDC is a bridge between the haves and have-nots, driving inclusive enterprise development for Tanzania’s future.</p>
+      <a href="#about" class="btn btn-hero">Discover More</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="Background.jpg" class="img-fluid rounded shadow" alt="About NEDC">
+        </div>
+        <div class="col-md-6">
+          <h2 class="section-title">Who We Are</h2>
+          <p>The National Enterprise & Development Chamber (NEDC) is more than a chamber of commerce – it is a movement, a family, and a trusted partner for entrepreneurs across Tanzania.</p>
+          <p>We work to close the ecosystem gap by providing access to finance, mentorship, innovation, and partnerships that empower SMEs and youth to thrive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision, Mission, Values -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title text-center">Our Foundation</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="icon-card text-center">
+            <i class="fas fa-eye"></i>
+            <h5>Vision</h5>
+            <p>A Tanzania where every entrepreneur thrives and contributes to national transformation.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="icon-card text-center">
+            <i class="fas fa-bullseye"></i>
+            <h5>Mission</h5>
+            <p>Closing the gap between the haves and have-nots through enterprise development, innovation, and inclusivity.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="icon-card text-center">
+            <i class="fas fa-handshake"></i>
+            <h5>Values</h5>
+            <p>Integrity, Innovation, Inclusivity, Collaboration, Sustainability, and Impact.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Impact Stats -->
+  <section class="stats text-center">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-3"><h3>10,000+</h3><p>MSMEs Formalized</p></div>
+        <div class="col-md-3"><h3>TZS 120B</h3><p>Finance Mobilized</p></div>
+        <div class="col-md-3"><h3>30,000+</h3><p>Entrepreneurs Trained</p></div>
+        <div class="col-md-3"><h3>50,000+</h3><p>Jobs Created</p></div>
+      </div>
+    </div>
+  </section>
+  <!-- Strategic Pillars -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center">Our Strategic Pillars</h2>
+      <div class="row g-4">
+        <div class="col-md-4"><div class="pillar-card">Enterprise Development & Formalization</div></div>
+        <div class="col-md-4"><div class="pillar-card">Innovation, Youth & Women Empowerment</div></div>
+        <div class="col-md-4"><div class="pillar-card">Policy Advocacy & Governance</div></div>
+        <div class="col-md-6"><div class="pillar-card">Sustainability & Blue Economy</div></div>
+        <div class="col-md-6"><div class="pillar-card">Regional & Global Partnerships</div></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Partners 
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title text-center"></h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="leader-card">
+            <img src="founde.jpg" alt="Founder">
+            <h5>Jesse Madauda</h5>
+            <p>Founder & Executive Director</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="leader-card">
+            <img src="chairman.jpg" alt="Chairman">
+            <h5>Benedict Ishabakaki</h5>
+            <p>Chairman of the Board</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="leader-card">
+            <img src="team.jpg" alt="Leadership">
+            <h5>Board Members</h5>
+            <p>Driving sustainable enterprise growth in Tanzania</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Be Part of Tanzania’s Next Chapter</h2>
+    <a href="membership.html" class="btn btn-dark">Become a Member</a>
+    <a href="contact.html" class="btn btn-dark">Partner With Us</a>
+  </section>
+
+<!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>NEDC</h5>
+          <p>National Enterprise & Development Chamber</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Quick Links</h6>
+          <ul class="list-unstyled">
+  <li><a href="new about.html" class="text-white color-hover">About Us</a></li>
+  <li><a href="new programs.html" class="text-white color-hover">Business Hub</a></li>
+  <li><a href="COMING SOON.html" class="text-white color-hover">Our services</a></li>
+  <li><a href="documents.html" class="text-white color-hover">Documents</a></li>
+  <li><a href="#.html" class="text-white color-hover">Contacts</a></li>
+  
+</ul>
+
+        </div>
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <p class="text-white color-hover">Email: info@nedc.or.tz</p>
+          <p class="text-white color-hover">Phone: +255654 700 444</p>
+          <div class="social-icons mt-2">
+            <a href="https://www.instagram.com/bongofursa/">Instagram<i class="text-white color-hover"></i></a>
+            <a href="https://www.instagram.com/nedc_tanzania/">LinkedIn<i class="text-white color-hover"></i></a>
+            <a href="https://www.youtube.com/channel/UCkaN4di1F2gxJ6fTbPFocAw">Youtube<i class="text-white color-hover"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <small>© 2025 NEDC - All Rights Reserved</small>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+  // Navbar color change on scroll
+  window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+document.querySelectorAll('.color-hover').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    let rect = el.getBoundingClientRect();
+    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  });
+});
+
+    // Navbar scroll effect
+   /* window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });*/
+
+document.addEventListener("scroll", function () {
+  const scrollPos = window.scrollY;
+  const logoTop = document.querySelector(".logo-top");
+  const logoScroll = document.querySelector(".logo-scroll");
+
+  if (scrollPos > 50) { // after scrolling
+    logoTop.classList.add("d-none");
+    logoScroll.classList.remove("d-none");
+  } else { // at top
+    logoTop.classList.remove("d-none");
+    logoScroll.classList.add("d-none");
+  }
+});
+
+
+document.querySelectorAll('.color-hover').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    let rect = el.getBoundingClientRect();
+    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  });
+});
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-section, .stat-card').forEach(el => observer.observe(el));
+
+    // Animated counters
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // smaller = faster
+
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const updateCount = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = Math.ceil(target / speed);
+
+            if(count < target){
+              counter.innerText = count + increment;
+              setTimeout(() => updateCount(counter), 20);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          };
+          updateCount(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach(c => counterObserver.observe(c));
+
+  </script>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarCollapse = document.getElementById("navmenu");
+  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+
+  // Close menu on nav-link click
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    link.addEventListener("click", () => {
+      if (navbarCollapse.classList.contains("show")) {
+        bsCollapse.hide();
+      }
+    });
+  });
+
+  // Close menu on scroll
+  window.addEventListener("scroll", () => {
+    if (navbarCollapse.classList.contains("show")) {
+      bsCollapse.hide();
+    }
+  });
+});
+</script>
+
+
+  <script>
+    window.addEventListener("scroll", function() {
+      let nav = document.querySelector(".navbar");
+      if (window.scrollY > 50) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    });
+  </script>
+</body>
+</html>
+

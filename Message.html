@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foreword - NEDC</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Nunito Sans font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+
+    /* Navbar */
+    .navbar { background: white; transition: background 0.3s, box-shadow 0.3s; }
+    .navbar .nav-link { font-weight: 600; color: #333; margin-right: 15px; }
+    .navbar .nav-link:hover { color: #2EC2DF; }
+    .navbar-brand img { height: 50px; }
+
+    /* Hero */
+    .hero {
+      display: flex; justify-content: center; align-items: center;
+      height: 40vh; background:url(Background.jpg);
+    }
+    .hero h1 {
+      color: #fff;
+      padding: 20px 40px; border-radius: 12px;
+      font-weight: 800; text-transform: uppercase;
+      margin-top: 60px;
+    }
+
+    /* Foreword cards */
+    .foreword-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .foreword-card img {
+      width: 280px;   /* fixed width */
+      height: 350px;  /* fixed height */
+      object-fit: cover;
+      margin-bottom: 20px;
+      border-radius: 8px; /* no circle, slight rounded corners */
+      transition: transform 0.4s ease;
+    }
+    .foreword-card img:hover { transform: scale(1.03); }
+    .foreword-card h3 { font-weight: 700; color: #2EC2DF; }
+    .foreword-card p.signature { font-weight: 600; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="nedc_lg-removebg-preview.png" alt="NEDC Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  About Us</a>
+            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li><a class="dropdown-item" href="new about.html">Who We Are</a></li>
+              <li><a class="dropdown-item" href="new board.html">Our Leadership</a></li>
+              <li><a class="dropdown-item" href="Message.html">From Our Leaders</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Board Members</a></li>
+              <li><a class="dropdown-item" href="#">Our Partners</a></li> -->
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Business Hub</a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+            <li><a class="dropdown-item" href="membership.html">Become A Member</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Membership Categories and Chairman</a></li>
+            <li><a class="dropdown-item" href="new programs.html">Programs and Initiatives</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Innovation Labs</a></li>
+              <li><a class="dropdown-item" href="new programs.html">Capacity Building</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="membershipDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Services</a>
+            <ul class="dropdown-menu" aria-labelledby="membershipDropdown">
+              <li><a class="dropdown-item" href="COMING SOON.html">Services and Training</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Benefits</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">Member Directory</a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html"></a></li>
+              <li><a class="dropdown-item" href="COMING SOON.html">FAQs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="documentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documents</a>
+            <ul class="dropdown-menu" aria-labelledby="documentsDropdown">
+              <li><a class="dropdown-item" href="documents.html">Reports</a></li>
+              <li><a class="dropdown-item" href="documents.html">Policies</a></li>
+              <li><a class="dropdown-item" href="documents.html">Guidelines</a></li>
+              <li><a class="dropdown-item" href="documents.html">Templates</a></li>
+              <li><a class="dropdown-item" href="documents.html">Forms</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Foreword Messages</h1>
+  </section>
+
+  <!-- CEO Foreword -->
+  <section class="py-5">
+    <div class="container">
+      <div class="foreword-card">
+        <img src="ceo.jpg" alt="CEO - Jesse Stephen Madauda">
+        <h3>Message from the Founder & Executive Director</h3>
+        <p class="mt-3 text-start">
+          When I walk through the streets of our cities and towns, I see a truth that both inspires me and troubles me. 
+          I see the creativity, the drive, and the raw talent of our young people. I also see how much of that potential 
+          is wasted – not because of a lack of ambition, but because of a gap in the entrepreneurial ecosystem...
+        </p>
+        <p class="mt-3 text-start">
+          The National Enterprise and Development Chamber (NEDC) was born from a conviction: that no talent 
+          should go to waste, and no entrepreneur should be left without support...
+        </p>
+        <p class="signature">— Jesse Stephen Madauda<br>Founder & Executive Director</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chairman Foreword -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="foreword-card">
+        <img src="chairman.png" alt="Chairman - Benedict Ishabakaki">
+        <h3>Message from the Chairman of the Board</h3>
+        <p class="mt-3 text-start">
+          It is with great pride and responsibility that I present this message on behalf of the Board of Directors of NEDC. 
+          Our Chamber has been established at a time when Tanzania’s entrepreneurial spirit is undeniable, yet the 
+          gaps in our ecosystem have left too many young talents and promising enterprises without the 
+          opportunity to grow...
+        </p>
+        <p class="mt-3 text-start">
+          We want to assure every stakeholder — government, development partners, private sector, and our members — 
+          that NEDC is built on a foundation of transparency, integrity, and accountability...
+        </p>
+        <p class="signature">— Benedict Ishabakaki<br>Chairman of the Board</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-white py-4" style="background:#111;">
+    <div class="container text-center">
+      <p>© 2025 NEDC - All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
