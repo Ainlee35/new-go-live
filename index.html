@@ -511,123 +511,135 @@ flex-wrap: nowrap;
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-
-  // Navbar color change on scroll
-  window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".navbar");
-    navbar.classList.toggle("scrolled", window.scrollY > 50);
-  });
-document.querySelectorAll('.color-hover').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    let rect = el.getBoundingClientRect();
-    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
-    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
-  });
-});
-
-    // Navbar scroll effect
-   /* window.addEventListener("scroll", function() {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });*/
-
-document.addEventListener("scroll", function () {
-  const scrollPos = window.scrollY;
-  const logoTop = document.querySelector(".logo-top");
-  const logoScroll = document.querySelector(".logo-scroll");
-
-  if (scrollPos > 50) { // after scrolling
-    logoTop.classList.add("d-none");
-    logoScroll.classList.remove("d-none");
-  } else { // at top
-    logoTop.classList.remove("d-none");
-    logoScroll.classList.add("d-none");
-  }
-});
-
-
-document.querySelectorAll('.color-hover').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    let rect = el.getBoundingClientRect();
-    el.style.setProperty('--x', `${e.clientX - rect.left}px`);
-    el.style.setProperty('--y', `${e.clientY - rect.top}px`);
-  });
-});
-
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.fade-section, .stat-card').forEach(el => observer.observe(el));
-
-    // Animated counters
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200; // smaller = faster
-
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const updateCount = (counter) => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const increment = Math.ceil(target / speed);
-
-            if(count < target){
-              counter.innerText = count + increment;
-              setTimeout(() => updateCount(counter), 20);
-            } else {
-              counter.innerText = target.toLocaleString();
-            }
-          };
-          updateCount(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.6 });
-
-    counters.forEach(c => counterObserver.observe(c));
-
-  </script>
-  
-<script>
 document.addEventListener("DOMContentLoaded", function () {
+  const navbar = document.querySelector(".navbar");
   const navbarCollapse = document.getElementById("navmenu");
-  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+  const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse, { toggle: false });
 
-  // Close menu on nav-link click
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-    link.addEventListener("click", () => {
-      if (navbarCollapse.classList.contains("show")) {
+  /* --- NAVBAR SCROLL COLOR --- */
+  function handleScroll() {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  }
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+
+  /* --- CLOSE MENU WHEN CLICKING OUTSIDE --- */
+  document.addEventListener("click", function (e) {
+    if (navbarCollapse.classList.contains("show") && !e.target.closest(".navbar")) {
+      bsCollapse.hide();
+    }
+  });
+
+  /* --- CLOSE MENU WHEN CLICKING A NAV LINK (except dropdown toggles) --- */
+  document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+    link.addEventListener("click", function () {
+      if (window.innerWidth < 992 && !this.classList.contains("dropdown-toggle")) {
         bsCollapse.hide();
       }
     });
   });
 
-  // Close menu on scroll
-  window.addEventListener("scroll", () => {
-    if (navbarCollapse.classList.contains("show")) {
+  /* --- DROPDOWN BEHAVIOR --- */
+  const dropdowns = document.querySelectorAll(".navbar .dropdown");
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+    const menu = dropdown.querySelector(".dropdown-menu");
+
+    // Desktop hover behavior
+    dropdown.addEventListener("mouseenter", function () {
+      if (window.innerWidth >= 992) {
+        const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
+        bsDropdown.show();
+      }
+    });
+
+    dropdown.addEventListener("mouseleave", function () {
+      if (window.innerWidth >= 992) {
+        const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
+        bsDropdown.hide();
+      }
+    });
+
+    // Prevent accidental collapse behavior on mobile
+    toggle.addEventListener("click", function (e) {
+      if (window.innerWidth < 992) {
+        e.preventDefault();
+        menu.classList.toggle("show");
+      }
+    });
+  });
+
+  /* --- RESET STATES ON WINDOW RESIZE --- */
+  window.addEventListener("resize", function () {
+    document.querySelectorAll(".dropdown-menu.show").forEach(m => m.classList.remove("show"));
+    if (window.innerWidth >= 992 && navbarCollapse.classList.contains("show")) {
       bsCollapse.hide();
     }
   });
 });
 </script>
+ <script>
+  (function(){
+    const navbar = document.querySelector('.navbar');
+    const navbarCollapse = document.getElementById('navmenu');
+    const collapseInstance = bootstrap.Collapse.getOrCreateInstance(navbarCollapse, {toggle:false});
 
+    // Add/remove scrolled class
+    function handleScroll(){ navbar.classList.toggle('scrolled', window.scrollY > 50); }
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
-  <script>
-    window.addEventListener("scroll", function() {
-      let nav = document.querySelector(".navbar");
-      if (window.scrollY > 50) nav.classList.add("scrolled");
-      else nav.classList.remove("scrolled");
+    // When a nav-link is clicked on mobile, only close the collapse if it's NOT a dropdown-toggle.
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', function(e){
+        if (window.innerWidth < 992) {
+          // don't collapse the navbar when user clicks a dropdown toggle
+          if (this.classList.contains('dropdown-toggle')) {
+            return; // allow bootstrap's dropdown to open/close
+          }
+          // Otherwise (normal link), close the menu
+          if (navbarCollapse.classList.contains('show')) collapseInstance.hide();
+        }
+      });
     });
+
+    // Prevent clicks inside dropdown menus from bubbling up and accidentally closing things
+    document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+      menu.addEventListener('click', function(e){ e.stopPropagation(); });
+    });
+
+    // Close open dropdowns when clicking outside the navbar
+    document.addEventListener('click', function(e){
+      if (!e.target.closest('.navbar')) {
+        document.querySelectorAll('.navbar .dropdown-menu.show').forEach(menu => menu.classList.remove('show'));
+      }
+    });
+
+    // If user resizes to desktop, reset mobile states
+    window.addEventListener('resize', function(){
+      if (window.innerWidth >= 992) {
+        document.querySelectorAll('.navbar .dropdown-menu.show').forEach(menu => menu.classList.remove('show'));
+        if (navbarCollapse.classList.contains('show')) collapseInstance.hide();
+      }
+    });
+
+  })();
   </script>
+<script>
+document.addEventListener("click", function (e) {
+  const navbarCollapse = document.getElementById("navmenu");
+  const collapseInstance = bootstrap.Collapse.getOrCreateInstance(navbarCollapse, { toggle: false });
+
+  // if navbar is open AND click is outside the navbar → close it
+  if (
+    navbarCollapse.classList.contains("show") &&
+    !e.target.closest(".navbar")
+  ) {
+    collapseInstance.hide();
+  }
+});
+</script>
+
 </body>
 </html>
